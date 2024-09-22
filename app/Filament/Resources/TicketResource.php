@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources;
 
+use App\Enums\PriorityTypes;
 use App\Filament\Resources\TicketResource\Pages;
 use App\Filament\Resources\TicketResource\RelationManagers;
 use App\Models\Ticket;
@@ -35,7 +36,8 @@ class TicketResource extends Resource
                 ->options(TicketType::pluck('description', 'id'))->required(),
                 Forms\Components\Select::make('user_id')->label('Created By')
                     ->options(User::pluck('name', 'id'))->required(),
-                Forms\Components\TextInput::make('description')->required(),
+                Forms\Components\TextInput::make('title')->required(),
+                Forms\Components\Textarea::make('description')->required(),
                 Forms\Components\Textarea::make('reason')->label('Edit Reason')->required()
             ]);
     }
@@ -45,6 +47,8 @@ class TicketResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('ticketType.type')->label('Type'),
+                Tables\Columns\TextColumn::make('ticketType.priority')->badge(),
+                Tables\Columns\TextColumn::make('title'),
                 Tables\Columns\TextColumn::make('description'),
                 Tables\Columns\TextColumn::make('ticketStatus.description')->label('Status'),
                 Tables\Columns\TextColumn::make('created_at')->label('Created')->dateTime(),

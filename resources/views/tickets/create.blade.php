@@ -12,7 +12,7 @@
                         @csrf
                         <div class="flex flex-wrap -mx-3 mb-2">
                             <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
-                                <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="ticket_type_id">
+                                <label class="block uppercase tracking-wide text-gray-200 text-xs font-bold mb-2" for="ticket_type_id">
                                     Type
                                 </label>
                                 <div class="relative">
@@ -30,7 +30,15 @@
                         </div>
                         <div class="flex flex-wrap -mx-3 mb-6">
                             <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-                                <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="description">
+                                <label class="block uppercase tracking-wide text-gray-200 text-xs font-bold mb-2" for="title">
+                                    Title
+                                </label>
+                                <input type="text" id="title" name="title" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-grey-300 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white">
+                            </div>
+                        </div>
+                        <div class="flex flex-wrap -mx-3 mb-6">
+                            <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+                                <label class="block uppercase tracking-wide text-gray-200 text-xs font-bold mb-2" for="description">
                                     Description
                                 </label>
                                 <textarea class="appearance-none block w-full bg-gray-200 text-gray-700 border border-grey-300 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" id="description" name="description" rows="4" placeholder="Enter description here..."></textarea>

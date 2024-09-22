@@ -19,7 +19,9 @@ class TicketController extends Controller
      */
     public function index()
     {
-        return view('tickets.index');
+        return view('tickets.index')->with([
+            'tickets' => auth()->user()->tickets()->with('ticketType', 'ticketStatus')->get()
+        ]);
     }
 
     /**
@@ -39,10 +41,12 @@ class TicketController extends Controller
     {
         $ticketTypeId = $request->get('ticket_type_id');
         $description = $request->get('description');
+        $title = $request->get('title');
 
         try {
             DB::beginTransaction();
             $ticket = Ticket::create([
+                'title' => $title,
                 'description' => $description,
                 'ticket_status_id' => TicketStatus::submitted()->id,
                 'created_by_user_id' => auth()->user()->id,
@@ -57,7 +61,7 @@ class TicketController extends Controller
             return redirect()->action([TicketController::class, 'show'],['ticket' => $ticket->id])->with('success', "Your Case Number is " . $ticket->id);
         } catch (\Exception $exception) {
             DB::rollBack();
-            return back()->with('danger', "Error Creating Ticket. Refresh and try again");
+            return back()->with('danger', $exception->getMessage());
         }
     }
 

@@ -13,7 +13,7 @@ class Ticket extends Model
     use HasFactory;
     protected $fillable = ['resolved_by_user_id', 'ticket_status_id',
         'ticket_type_id', 'description', 'created_by_user_id',
-        'is_resolved', 'resolved_at', 'resolved_by_user_id'
+        'is_resolved', 'resolved_at', 'resolved_by_user_id', 'title'
     ];
 
     public function createdBy(): BelongsTo

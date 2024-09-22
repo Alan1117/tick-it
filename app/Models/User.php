@@ -4,6 +4,7 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Filament\Models\Contracts\FilamentUser;
@@ -56,5 +57,10 @@ class User extends Authenticatable implements FilamentUser
     {
         return true;
 //        return str_ends_with($this->email, '@yourdomain.com') && $this->hasVerifiedEmail();
+    }
+    
+    public function tickets(): HasMany
+    {
+        return $this->hasMany(Ticket::class, 'created_by_user_id', 'id');
     }
 }

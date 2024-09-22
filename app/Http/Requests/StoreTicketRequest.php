@@ -23,7 +23,8 @@ class StoreTicketRequest extends FormRequest
     {
         return [
             'description' => 'required',
-            'ticket_type_id' => 'required'
+            'ticket_type_id' => 'required',
+            'title' => 'required'
         ];
     }
 }
