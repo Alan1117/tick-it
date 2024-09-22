@@ -23,6 +23,13 @@ return new class extends Migration
             $table->foreign('previous_ticket_status_id')->references('id')->on('ticket_statuses');
             $table->foreign('current_ticket_status_id')->references('id')->on('ticket_statuses');
         });
+
+        \App\Models\TicketStatus::firstOrCreate(['description' => 'Submitted']);
+        \App\Models\TicketStatus::firstOrCreate(['description' => 'Open']);
+        \App\Models\TicketStatus::firstOrCreate(['description' => 'In Progress']);
+        \App\Models\TicketStatus::firstOrCreate(['description' => 'Resolved']);
+        \App\Models\TicketStatus::firstOrCreate(['description' => 'Reopened']);
+        \App\Models\TicketStatus::firstOrCreate(['description' => 'Escalated']);
     }
 
     /**
