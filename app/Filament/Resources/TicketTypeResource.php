@@ -27,9 +27,9 @@ class TicketTypeResource extends Resource
                 Forms\Components\TextInput::make('type')->required(),
                 Forms\Components\TextInput::make('description')->required(),
                 Forms\Components\Select::make('priority')
-                ->options([
-                    PriorityTypes::cases()
-                ])->required()
+                    ->options(collect(PriorityTypes::cases())->mapWithKeys(fn($case) => [
+                        $case->value => ucfirst($case->value),
+                    ])->toArray())->required()
             ]);
     }
 
@@ -38,10 +38,13 @@ class TicketTypeResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('type'),
-                Tables\Columns\TextColumn::make('description')
+                Tables\Columns\TextColumn::make('description'),
+                Tables\Columns\TextColumn::make('priority')->badge()
             ])
             ->filters([
-                //
+                Tables\Filters\SelectFilter::make('priority')->options(collect(PriorityTypes::cases())->mapWithKeys(fn($case) => [
+                    $case->value => ucfirst($case->value),
+                ])->toArray())
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),

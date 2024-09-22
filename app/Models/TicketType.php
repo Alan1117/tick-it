@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 class TicketType extends Model
 {
     use HasFactory;
-    protected $fillable = ['type', 'description'];
+    protected $fillable = ['type', 'description', 'priority'];
 
     public function tickets(): HasMany
     {
